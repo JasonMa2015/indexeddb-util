@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<script src="./jquery-1.9.1.min.js" type="text/javascript"></script>
+<style type="text/css">
+  .borderBottom{width: 100%;height: 0;border-bottom: 1px solid #ccc;margin: 10px 0}
+</style>
+</head>
+<body>
+	<a class="addData" href="javascript:;">新曾数据</a>
+	<a class="updateData" href="javascript:;">更新数据</a>
+  <div class="borderBottom"></div>
+	<a class="getData" href="javascript:;">获取数据</a>
+	<a class="getAllData" href="javascript:;">获取所有数据</a>
+  <div class="borderBottom"></div>
+  <a class="deleteDB" href="javascript:;">删除数据库</a>
+  <a class="closeDB" href="javascript:;">关闭数据库</a>
+	<a class="deleteData" href="javascript:;">删除某条数据</a>
+	<a class="clearData" href="javascript:;">删除数据库所有数据</a>
+  <div class="borderBottom"></div>
+	<a class="searchData" href="javascript:;">搜索数据</a>
+</body>
+<script src="../dist/IndexedDB-util.js"></script>
+<script>
+  var dbObject = {
+    dbName: 'userInfo', // 数据库名
+    version: 1, // 版本号
+    primaryKey: 'id', // 主键
+    keyNames: [{ // 需要存储的数据字段对象
+      key: 'name', // 字段名
+      unique: false // 当前这条数据是否能重复 (最常用) 默认false
+    }]
+  };
+	var userInfo = new IndexedDB(dbObject);
+  userInfo.init();
+
+  var addData = $('.addData');
+  var option = [{
+      id: 1,
+      name: '张三',
+      age: 24,
+      email: 'zhangsan@example.com'
+    }, {
+      id: 2,
+      name: '张四',
+      age: 34,
+      email: 'zhangsi@example.com'
+    }, {
+      id: 3,
+      name: '张五',
+      age: 44,
+      email: 'zhangwu@example.com'
+    }];
+  var par = {
+    id: 99,
+    name: '张99',
+    age: 99,
+    email: 'zhangsan@example.com'
+  };
+
+  var up = {
+    id: 2,
+    name: '888',
+    age: 88,
+    email: 'zhangsi@example.com'
+  };
+  addData.on('click', function(event) {
+    event.preventDefault();
+    userInfo.set(option);
+  });
+
+  var updateData = $('.updateData');
+  updateData.on('click', function(event) {
+    event.preventDefault();
+    userInfo.updateData(up);
+  });
+
+  var getAllData = $('.getAllData');
+  getAllData.on('click', function(event) {
+    event.preventDefault();
+    userInfo.getAllData();
+  });
+
+  var getData = $('.getData');
+  getData.on('click', function(event) {
+    event.preventDefault();
+    userInfo.getData(3);
+  });
+
+  var deleteDB = $('.deleteDB');
+  deleteDB.on('click', function(event) {
+    event.preventDefault();
+    userInfo.deleteDB();
+  });
+
+  var closeDB = $('.closeDB');
+  closeDB.on('click', function(event) {
+    event.preventDefault();
+    userInfo.closeDB();
+  });
+
+  var deleteData = $('.deleteData');
+  deleteData.on('click', function(event) {
+    event.preventDefault();
+    userInfo.deleteData(1);
+  });
+
+  var clearData = $('.clearData');
+  clearData.on('click', function(event) {
+    event.preventDefault();
+    userInfo.clearData();
+  });
+
+  var searchData = $('.searchData');
+  searchData.on('click', function(event) {
+    event.preventDefault();
+    userInfo.searchData('name', '张三');
+  });
+</script>
+</html>

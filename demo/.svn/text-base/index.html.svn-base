@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<body>
+<div>请启动服务后查看该组件，本地打开本网页无法操作cookie！</div>
+</body>
+<script src="../dist/cookie-util.js"></script>
+<script>
+  console.log(document.cookie);
+  CookieUtil.set('test','wwwww')
+  console.log(document.cookie);
+</script>
+</html>

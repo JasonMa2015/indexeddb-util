@@ -1,0 +1,14 @@
+{
+  "name": "@cnpm/IndexedDB-util",
+  "version": "1.0.0",
+  "description": "IndexedDB的获取、增加、删除、查询",
+  "main": "index.js",
+  "scripts": {
+    "compress": "uglifyjs index.js -m -c -o dist/IndexedDB-util.js"
+  },
+  "keywords": [
+    "IndexedDB"
+  ],
+  "author": "JasonMa",
+  "license": "ISC"
+}
